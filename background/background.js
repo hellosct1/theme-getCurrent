@@ -1,25 +1,29 @@
-async function getCurrentThemeInfo() {
-  const themeInfo = await browser.theme.getCurrent();
+function setSidebarStyle(theme) {
 
-console.log(themeInfo);
-  
-console.log("accent color : " +  themeInfo.accentcolor);
-console.log("frame : " +   themeInfo.frame);
-console.log("texte color :" + themeInfo.textcolor); 
-console.log("tab text : "+  themeInfo.tab_text);
-console.log("backgroung tab text : " +  themeInfo.background_tab_text);
-console.log("toolbar : " +  themeInfo.toolbar);
-console.log("toolbar texte : " +  themeInfo.toolbar_text);
-console.log("bookmark texte : " +  themeInfo.bookmark_text);
-console.log("toolnar field : " +  themeInfo.toolbar_field);
-console.log("toolnar field text : " +  themeInfo.toolbar_field_text);
-console.log("toolbar top separator : " +  themeInfo.toolbar_top_separator);
-console.log("toolbar bottom separator : " +  themeInfo.toolbar_bottom_separator);
-console.log("toolbar vertical separator : " + themeInfo.toolbar_vertical_separator);
+  if (theme.colors) 
+  {
+    console.log("accent color : " +  theme.colors.accentcolor);
+    console.log("toolbar : " + theme.colors.toolbar);
+    console.log("frame : " +   theme.colors.frame);
+    console.log("texte color :" + theme.colors.textcolor); 
+    console.log("tab text : "+  theme.colors.tab_text);
+    console.log("backgroung tab text : " +  theme.colors.background_tab_text);
+    console.log("toolbar : " +  theme.colors.toolbar);
+    console.log("toolbar texte : " +  theme.colors.toolbar_text);
+    console.log("bookmark texte : " +  theme.colors.bookmark_text);
+    console.log("toolnar field : " +  theme.colors.toolbar_field);
+    console.log("toolnar field text : " +  theme.colors.toolbar_field_text);
+    console.log("toolbar top separator : " +  theme.colors.toolbar_top_separator);
+    console.log("toolbar bottom separator : " +  theme.colors.toolbar_bottom_separator);
+    console.log("toolbar vertical separator : " + theme.colors.toolbar_vertical_separator);
+  }
   
 }
 
-getCurrentThemeInfo();
-
-
+// Set the element style when the extension page loads
+async function setInitialStyle() {
+  var theme = await browser.theme.getCurrent();
+  setSidebarStyle(theme);
+}
+setInitialStyle();
 
